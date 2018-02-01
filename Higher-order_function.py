@@ -6,7 +6,8 @@
 1.2：reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，
 这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算。
 例如：reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
-2.
+2.Python内建的filter()函数用于过滤序列。
+例如：R = filter(f,Iterable)，filter会将Iterable中的所有元素放到f中筛选并得出结果放到R中。
 3.
 '''
 from functools import reduce
@@ -70,6 +71,22 @@ def str2float(str):
 
 print('str2float(\'123.456\') =', str2float('123.456'))
 if abs(str2float('123.456') - 123.456) < 0.00001:
+    print('测试成功!')
+else:
+    print('测试失败!')
+
+
+# 2.1
+# 回数是指从左向右读和从右向左读都是一样的数，
+# 例如12321，909。请利用filter()筛选出回数。
+def is_palindrome(n):
+    # 原来值如果与反过来原来值相同，则该值为回数
+    return int(str(n)[::-1]) == n
+
+# 测试
+output = filter(is_palindrome, range(1, 1000))
+print('1~1000:', list(output))
+if list(filter(is_palindrome, range(1, 200))) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33, 44, 55, 66, 77, 88, 99, 101, 111, 121, 131, 141, 151, 161, 171, 181, 191]:
     print('测试成功!')
 else:
     print('测试失败!')
