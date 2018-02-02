@@ -8,7 +8,9 @@
 例如：reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
 2.Python内建的filter()函数用于过滤序列。
 例如：R = filter(f,Iterable)，filter会将Iterable中的所有元素放到f中筛选并得出结果放到R中。
-3.
+3.排序算法
+sorted()函数也是一个高阶函数，它还可以接收一个key函数来实现自定义的排序，
+例如按绝对值大小排序：R = sorted([36, 5, -12, 9, -21], key=abs)
 '''
 from functools import reduce
 
@@ -90,3 +92,27 @@ if list(filter(is_palindrome, range(1, 200))) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 11,
     print('测试成功!')
 else:
     print('测试失败!')
+
+
+# 假设我们用一组tuple表示学生名字和成绩：
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+# 3,1 按名字排序：
+def by_name(t):
+    return str.lower(t[0])
+# 测试
+L2 = sorted(L, key=by_name)
+print(L2)
+
+# 3.2 按成绩从高到低排序：
+def by_score(t):
+    return -t[1]
+# 测试
+L3 = sorted(L, key=by_score)
+print(L3)
+
+# 或者
+#def by_score(t):
+#     return t[1]
+# # 测试
+# L3 = sorted(L, key=by_score, reserve = True)
+# print(L3)
